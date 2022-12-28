@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import { Link, useParams } from "react-router-dom";
 
 const Home = () => {
   const [provinces, setProvinces] = useState([]);
+
+  const { id } = useParams();
 
   useEffect(() => {
     loadProvinces();
@@ -15,6 +18,10 @@ const Home = () => {
     setProvinces(result.data);
   };
 
+  const deleteUser = async (id) => {
+    await axios.delete(`http://localhost:8080/province/${id}`);
+    loadProvinces();
+  };
   return (
     <div className="container">
       <div className="py-4">
@@ -35,9 +42,23 @@ const Home = () => {
                 <td>{province.province}</td>
                 <td>{province.canton}</td>
                 <td>{province.cNumber}</td>
-                <Button variant="primary">View</Button>
-                <Button variant="warning">Edit</Button>
-                <Button variant="danger">Delete</Button>
+                <td>
+                  <Link className="btn btn-outline-primary mx-2" to={"/view"}>
+                    View
+                  </Link>
+                  <Link
+                    className="btn btn-outline-primary mx-2"
+                    to={`/edit/${province.id}`}
+                  >
+                    Edit
+                  </Link>
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteUser(province.id)}
+                  >
+                    Delete
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
