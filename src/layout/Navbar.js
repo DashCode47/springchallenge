@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const NavbarSC = () => {
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#">Challenge</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -41,7 +41,7 @@ const NavbarSC = () => {
               className="me-2"
               aria-label="Search"
             />
-            <Link variant="outline-success" to={"/add"}>
+            <Link className="btn btn-outline-light" to={"/add"}>
               Add Province
             </Link>
           </Form>

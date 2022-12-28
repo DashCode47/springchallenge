@@ -43,7 +43,10 @@ const Home = () => {
                 <td>{province.canton}</td>
                 <td>{province.cNumber}</td>
                 <td>
-                  <Link className="btn btn-outline-primary mx-2" to={"/view"}>
+                  <Link
+                    className="btn btn-outline-primary mx-2"
+                    to={`/view/${province.id}`}
+                  >
                     View
                   </Link>
                   <Link
